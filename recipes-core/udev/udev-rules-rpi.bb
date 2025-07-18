@@ -7,6 +7,7 @@ SRC_URI = " \
 	file://can.rules \
 	"
 SRCREV = "5ce3ef2b7f377c23fea440ca9df0e30f3f8447cf"
+PV = "20230510"
 
 S = "${WORKDIR}/git"
 
