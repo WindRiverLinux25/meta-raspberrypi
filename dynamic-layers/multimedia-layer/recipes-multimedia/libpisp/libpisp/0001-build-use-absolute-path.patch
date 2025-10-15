@@ -1,0 +1,41 @@
+From 2a6a4727163e181707244ebd904440d5a41cde62 Mon Sep 17 00:00:00 2001
+From: Xiaolei Wang <xiaolei.wang@windriver.com>
+Date: Fri, 17 Oct 2025 21:44:10 +0800
+Subject: [PATCH] build: use absolute path
+
+Issue: LINUXEXEC-36562
+
+Use absolute paths to avoid the following build errors
+
+libpisp contains reference to TMPDIR [buildpaths]
+
+Upstream-Status: Pending
+
+Signed-off-by: Xiaolei Wang <xiaolei.wang@windriver.com>
+---
+ src/meson.build | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/meson.build b/src/meson.build
+index 6ace2ff..e680b97 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -52,7 +52,7 @@ libpisp = library(
+     include_directories : include_directories(inc_dirs),
+     name_prefix : '',
+     install : true,
+-    build_rpath : meson.project_source_root(),
++    build_rpath : '/',
+     dependencies : pisp_deps,
+ )
+ 
+@@ -69,4 +69,4 @@ pkg_mod.generate(libpisp,
+ 
+ if get_option('examples')
+     subdir('examples')
+-endif
+\ No newline at end of file
++endif
+-- 
+2.43.0
+
